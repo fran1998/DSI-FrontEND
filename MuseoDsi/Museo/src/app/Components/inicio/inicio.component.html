@@ -1,0 +1,102 @@
+
+<!---validar formatos fechas y toda esa cuestion--> 
+<form name='formRegistrarReserva'[formGroup] = 'formRegistrarReserva' class="bg-light text-center">
+    <h2 class="text-center">Registrar Reserva </h2>
+    <div class='form-group row text-center' *ngIf='vista === "E" ||vista === "A"'>
+        <label class="col-form-label col-sm-1" for="Escuela">Escuela</label>
+        <div class="col-sm-6">
+            <select name="Escuela" [attr.disabled]='null' class="form-control" formControlName = "Escuela"
+            [ngClass]="{'is-invalid': (formRegistrarReserva.controls.Escuela.touched || flagSiguiente) 
+            && formRegistrarReserva.controls.Escuela.errors}">
+                <option class="text-center" *ngFor="let escuela of Escuela" [ngValue]='escuela.Id'>
+                     {{escuela.Nombre}}
+            </select>
+        </div>
+        <div class='validacion' *ngIf="(formRegistrarReserva.controls.Escuela.touched || flagSiguiente) 
+                       && (formRegistrarReserva.controls.Escuela.errors?.required)">*Dato requerido</div>
+    </div>
+    <div class='form-group row text-center' *ngIf='vista === "S" ||vista === "A"'>
+        <label class="col-form-label col-sm-1" for="Sede">Sede</label>
+        <div class="col-sm-6">
+            <select name="Sede" [attr.disabled]='null' class="form-control" formControlName = "Sede"
+            [ngClass]="{'is-invalid': (formRegistrarReserva.controls.Sede.touched || flagSiguiente) 
+            && formRegistrarReserva.controls.Sede.errors}">>
+                <option class="text-center" *ngFor="let sede of Sede" [ngValue]='sede.Id'>
+                     {{sede.Nombre}}
+            </select>
+        </div>
+        <div class='validacion' *ngIf="(formRegistrarReserva.controls.Sede.touched || flagSiguiente) 
+                       && (formRegistrarReserva.controls.Sede.errors?.required)">*Dato requerido</div>
+    </div>
+    <div class='form-group row text-center' *ngIf='vista === "C" ||vista === "A"'>
+        <label class="col-form-label col-sm-1" for="CantVisitantes">Cantidad de Visitantes</label>
+        <div class="col-sm-6">
+            <input type="text" name='CantVisitantes' class="form-control text-center" formControlName="CantVisitantes"
+            [ngClass]="{'is-invalid': (formRegistrarReserva.controls.CantVisitantes.touched || flagSiguiente) 
+            && formRegistrarReserva.controls.CantVisitantes.errors}">
+        </div>
+        <div class='validacion' *ngIf="(formRegistrarReserva.controls.CantVisitantes.touched || flagSiguiente) 
+                       && (formRegistrarReserva.controls.CantVisitantes.errors?.required)">*Dato requerido</div>
+    </div>
+    <div class='form-group row text-center' *ngIf='vista === "T" ||vista === "A"'>
+        <label class="col-form-label col-sm-1" for="TipoVisita">Tipo Visita</label>
+        <div class="col-sm-6">
+            <select name='TipoVisita' [attr.disabled]='null' class="form-control" formControlName = "TipoVisita"
+            [ngClass]="{'is-invalid': (formRegistrarReserva.controls.TipoVisita.touched || flagSiguiente) 
+            && formRegistrarReserva.controls.TipoVisita.errors}">>
+                <option class="text-center" *ngFor="let tipoVisita of TipoVisita" [ngValue]='tipoVisita.Id'>
+                     {{tipoVisita.Nombre}}
+            </select>
+            <div class='validacion' *ngIf="(formRegistrarReserva.controls.TipoVisita.touched || flagSiguiente) 
+                       && (formRegistrarReserva.controls.TipoVisita.errors?.required)">*Dato requerido</div>
+        </div>
+    </div>
+    
+    <!----falta terminar de mostrar datos---->
+    <div class='form-group row text-center' *ngIf='vista === "X" ||vista === "A"'>
+        <label class="col-form-label col-sm-1" for="Exposicion">Exposicion</label>
+        <div class="col-sm-4">
+            <select name='Exposicion' [attr.disabled]='null' class="form-control" formControlName = "Exposicion"
+            [ngClass]="{'is-invalid': (formRegistrarReserva.controls.Exposicion.touched || flagSiguiente) 
+            && formRegistrarReserva.controls.Exposicion.errors}">
+                <option class="text-center" *ngFor="let exposicion of Exposicion" [ngValue]='exposicion.Id'>
+                     {{exposicion.Nombre}}
+            </select>
+            <div class='validacion' *ngIf="(formRegistrarReserva.controls.Exposicion.touched || flagSiguiente) 
+                       && (formRegistrarReserva.controls.Exposicion.errors?.required)">*Dato requerido</div>
+        </div>
+    </div>
+    <div class='form-group row text-center' *ngIf='vista === "R" ||vista === "A"'>
+        <label class="col-form-label col-sm-1" for="FechaReserva">FechaReserva</label>
+        <div class="col-sm-4">
+            <input type="text" name="FechaReserva" formControlName="FechaReserva" class="text-center"
+            [ngClass]="{'is-invalid': (formRegistrarReserva.controls.FechaReserva.touched || flagSiguiente) 
+            && formRegistrarReserva.controls.FechaReserva.errors}">
+        </div>
+        <div class='validacion' *ngIf="(formRegistrarReserva.controls.FechaReserva.touched || flagSiguiente) 
+                       && (formRegistrarReserva.controls.FechaReserva.errors?.required)">*Dato requerido</div>
+    </div>
+    <div class='form-group row text-center' *ngIf='vista === "R" ||vista === "A"'>
+        <label class="col-form-label col-sm-1" for="HoraReserva">HoraReserva</label>
+        <div class="col-sm-4">
+            <input type="text" name="HoraReserva" formControlName="HoraReserva" class="text-center"
+            [ngClass]="{'is-invalid': (formRegistrarReserva.controls.HoraReserva.touched || flagSiguiente) 
+            && formRegistrarReserva.controls.HoraReserva.errors}">
+        </div>
+        <div class='validacion' *ngIf="(formRegistrarReserva.controls.HoraReserva.touched || flagSiguiente) 
+                       && (formRegistrarReserva.controls.HoraReserva.errors?.required)">*Dato requerido</div>
+    </div>
+    <div class='form-group row text-center' *ngIf='vista === "G" ||vista === "A"'>
+        <label class="col-form-label col-sm-1" for="Guia">Guias</label>
+        <div class="col-sm-4">
+            <input type="text" name="Guias" formControlName="Guias" class="text-center"
+            [ngClass]="{'is-invalid': (formRegistrarReserva.controls.Guias.touched || flagSiguiente) 
+            && formRegistrarReserva.controls.Guias.errors}">
+        </div>
+        <div class='validacion' *ngIf="(formRegistrarReserva.controls.Guias.touched || flagSiguiente) 
+                       && (formRegistrarReserva.controls.Guias.errors?.required)">*Dato requerido</div>
+    </div>
+    <button class= "btn btn-outline-success" (click)="cambiarVista()">
+        <span class="fas fa-check">Siguiente</span>
+    </button>
+</form>
