@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MockEscuelaService } from 'src/app/Mock/mock-escuela.service';
+import { MockExposicionService } from 'src/app/Mock/mock-exposicion.service';
 import { MockSedeServiceService } from 'src/app/Mock/mock-sede-service.service';
 import { MockTipoVisitaService } from 'src/app/Mock/mock-tipo-visita.service';
 import { EscuelaModule } from 'src/app/Module/escuela/escuela.module';
@@ -10,6 +11,7 @@ import { TipoVisitaModule } from 'src/app/Module/tipo-visita/tipo-visita.module'
 import { EscuelaService } from 'src/app/Services/escuela.service';
 import { SedeService } from 'src/app/Services/sede.service';
 import { TipoVisitaService } from 'src/app/Services/tipo-visita.service';
+import { Alumnos, Participantes } from "../../Components/inicio/participantes";
 
 @Component({
   selector: 'app-inicio',
@@ -17,11 +19,13 @@ import { TipoVisitaService } from 'src/app/Services/tipo-visita.service';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
+  alumnos: Participantes[] = Alumnos;
   Escuela: EscuelaModule[]= [];
   Sede: SedeModule [] = [];
   TipoVisita: TipoVisitaModule [] = [];
   Exposiciones: ExposicionModule [] = []
   vistas = {
+    I : "Inicio", 
     E : "Vista Escuela",
     S : 'Vista Sede',
     C : "Vista Cantidad de Visitantes",
@@ -31,7 +35,7 @@ export class InicioComponent implements OnInit {
     G : 'Vista Guia para Reserva'
     };
   flagSiguiente: boolean = false;  
-  vista = 'E';
+  vista = 'I';
   formRegistrarReserva: FormGroup;
   constructor(
     private sedeServices: SedeService,
@@ -40,10 +44,12 @@ export class InicioComponent implements OnInit {
     private mockServiceEscuela: MockEscuelaService,
     private mockServiceTipoVisita: MockTipoVisitaService,
     private tipoVisitaService: TipoVisitaService,
+    private mockExposiciones: MockExposicionService,
     public formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.obtenerEscuela();
+    
+    
     this.formRegistrarReserva = this.formBuilder.group(
       {
         Escuela: [null, [Validators.required]],
@@ -51,8 +57,9 @@ export class InicioComponent implements OnInit {
         CantVisitantes: [null, [Validators.required]],
         TipoVisita: [null, [Validators.required]],
         FechaReserva: [null, [Validators.required]],
-        HoraReserve: [null, [Validators.required]],
-        Guias : [null,[Validators.required]]
+        HoraReserva: [null, [Validators.required]],
+        Guias : [null,[Validators.required]],
+        Exposicion: [null, [Validators.required]]
       }
     );
   }
@@ -73,7 +80,13 @@ export class InicioComponent implements OnInit {
   }
   obtenerExposicionesTemporalesDeSede()
   {
-    return;
+    console.log("aksdjha");
+    
+    this.mockExposiciones.getNombre().subscribe((res:ExposicionModule[]) => {
+      this.Exposiciones = res;
+      console.log(res);
+      
+    });
   }
   cambiarVista()
   {
@@ -81,6 +94,14 @@ export class InicioComponent implements OnInit {
     
     switch(this.vista)
     { 
+
+      case 'I':
+        {
+          this.obtenerEscuela();
+          this.vista = 'E';
+          break;
+        }
+
       case 'E':
         if(!this.formRegistrarReserva.controls.Escuela.errors?.required)
         {
@@ -107,14 +128,14 @@ export class InicioComponent implements OnInit {
       case 'T':
         if(!this.formRegistrarReserva.controls.TipoVisita.errors?.required)
         {
+        this.obtenerExposicionesTemporalesDeSede();
         this.vista = 'X';
         break;
         }
         return;
       case 'X':
-        if(!this.formRegistrarReserva.controls.Exposiciones.errors?.required)
+        //if(!this.formRegistrarReserva.controls.Exposiciones.errors?.required)
         {
-        this.obtenerExposicionesTemporalesDeSede();
         this.vista = 'R';
         break;
         }

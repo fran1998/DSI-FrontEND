@@ -1,6 +1,52 @@
 
-<!---validar formatos fechas y toda esa cuestion--> 
-<form name='formRegistrarReserva'[formGroup] = 'formRegistrarReserva' class="bg-light text-center">
+
+
+
+<div class="container mt-5" *ngIf="vista === 'I'">
+    <div class="row">
+        <div class="col">
+
+            <div class="alert alert-secondary">
+                <h1>CU N°92 <small>Registrar Reserva de Visita Guiada</small></h1>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Legajo</th>
+                    <th scope="col">Mail</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let alumno of alumnos">
+                    <td>{{alumno.nombre}}</td>
+                    <td>{{alumno.legajo}}</td>
+                    <td>{{alumno.mail}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button class= "btn btn-outline-success" (click)="cambiarVista()">
+                <span class="fas fa-check">Registrar reserva visita</span>
+            </button>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="container mt-5">
+    <!---validar formatos fechas y toda esa cuestion--> 
+    <form name='formRegistrarReserva'[formGroup] = 'formRegistrarReserva' class="bg-light text-center" *ngIf="vista !== 'I'">
     <h2 class="text-center">Registrar Reserva </h2>
     <div class='form-group row text-center' *ngIf='vista === "E" ||vista === "A"'>
         <label class="col-form-label col-sm-1" for="Escuela">Escuela</label>
@@ -55,7 +101,31 @@
     <!----falta terminar de mostrar datos---->
     <div class='form-group row text-center' *ngIf='vista === "X" ||vista === "A"'>
         <label class="col-form-label col-sm-1" for="Exposicion">Exposicion</label>
-        <div class="col-sm-4">
+
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th></th>
+                <th>Nombre Exposición</th>
+                <th>Hora Apertura</th>
+                <th>Hora Cierre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let exposicion of Exposiciones">
+                <th>
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  </div>
+                </th>
+                <td>{{exposicion.Nombre}}</td>
+                <td>{{exposicion.HoraApertura}}</td>
+                <td>{{exposicion.HoraCierre}}</td>
+              </tr>
+            </tbody>
+        </table>
+
+<!--         <div class="col-sm-4">
             <select name='Exposicion' [attr.disabled]='null' class="form-control" formControlName = "Exposicion"
             [ngClass]="{'is-invalid': (formRegistrarReserva.controls.Exposicion.touched || flagSiguiente) 
             && formRegistrarReserva.controls.Exposicion.errors}">
@@ -64,12 +134,12 @@
             </select>
             <div class='validacion' *ngIf="(formRegistrarReserva.controls.Exposicion.touched || flagSiguiente) 
                        && (formRegistrarReserva.controls.Exposicion.errors?.required)">*Dato requerido</div>
-        </div>
+        </div> -->
     </div>
     <div class='form-group row text-center' *ngIf='vista === "R" ||vista === "A"'>
         <label class="col-form-label col-sm-1" for="FechaReserva">FechaReserva</label>
         <div class="col-sm-4">
-            <input type="text" name="FechaReserva" formControlName="FechaReserva" class="text-center"
+            <input type="date" name="FechaReserva" formControlName="FechaReserva" class="text-center"
             [ngClass]="{'is-invalid': (formRegistrarReserva.controls.FechaReserva.touched || flagSiguiente) 
             && formRegistrarReserva.controls.FechaReserva.errors}">
         </div>
@@ -79,11 +149,11 @@
     <div class='form-group row text-center' *ngIf='vista === "R" ||vista === "A"'>
         <label class="col-form-label col-sm-1" for="HoraReserva">HoraReserva</label>
         <div class="col-sm-4">
-            <input type="text" name="HoraReserva" formControlName="HoraReserva" class="text-center"
-            [ngClass]="{'is-invalid': (formRegistrarReserva.controls.HoraReserva.touched || flagSiguiente) 
+            <input type="time" name="HoraReserva" formControlName="HoraReserva" class="text-center"
+            [ngClass]="{'is-invalid': (formRegistrarReserva.controls.HoraReserva?.touched || flagSiguiente) 
             && formRegistrarReserva.controls.HoraReserva.errors}">
         </div>
-        <div class='validacion' *ngIf="(formRegistrarReserva.controls.HoraReserva.touched || flagSiguiente) 
+        <div class='validacion' *ngIf="(formRegistrarReserva.controls.HoraReserva?.touched || flagSiguiente) 
                        && (formRegistrarReserva.controls.HoraReserva.errors?.required)">*Dato requerido</div>
     </div>
     <div class='form-group row text-center' *ngIf='vista === "G" ||vista === "A"'>
@@ -99,4 +169,5 @@
     <button class= "btn btn-outline-success" (click)="cambiarVista()">
         <span class="fas fa-check">Siguiente</span>
     </button>
-</form>
+    </form>
+</div>
