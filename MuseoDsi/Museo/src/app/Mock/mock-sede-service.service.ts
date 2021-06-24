@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Sede } from '../Module/sede/sede.module';
+import { sede } from '../Module/sede/sede.module';
 import { of } from 'rxjs';
 
 @Injectable({
@@ -10,6 +10,6 @@ export class MockSedeServiceService {
   constructor() { }
   getNombre()
   {
-    return of(Sede);
+    return of(sede);
   }
 }

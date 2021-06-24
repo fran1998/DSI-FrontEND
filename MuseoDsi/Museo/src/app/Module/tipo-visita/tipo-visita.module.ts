@@ -1,18 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
-})
-export class TipoVisitaModule { 
-  Id: number;
-  Nombre: string;
+export class TipoVisita { 
+  id: number;
+  nombre: string;
 }
-export const TipoVisitas:TipoVisitaModule []= 
+export const tipoVisitas:TipoVisita []= 
 [
-  {Id:1, Nombre:"Completa"},
-  {Id:2, Nombre:"Por Exposicion"},
+  {id:1, nombre:"Completa"},
+  {id:2, nombre:"Por Exposicion"},
 ]; 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {of} from "rxjs";
-import { Exposiciones } from '../Module/exposicion/exposicion.module';
+import { exposiciones } from '../Module/exposicion/exposicion.module';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class MockExposicionService {
 
   getNombre()
   {
-    return of(Exposiciones);
+    return of(exposiciones);
   }
   
 }

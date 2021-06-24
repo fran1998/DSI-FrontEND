@@ -4,10 +4,10 @@ import { MockEscuelaService } from 'src/app/Mock/mock-escuela.service';
 import { MockExposicionService } from 'src/app/Mock/mock-exposicion.service';
 import { MockSedeServiceService } from 'src/app/Mock/mock-sede-service.service';
 import { MockTipoVisitaService } from 'src/app/Mock/mock-tipo-visita.service';
-import { EscuelaModule } from 'src/app/Module/escuela/escuela.module';
-import { ExposicionModule } from 'src/app/Module/exposicion/exposicion.module';
-import { SedeModule } from 'src/app/Module/sede/sede.module';
-import { TipoVisitaModule } from 'src/app/Module/tipo-visita/tipo-visita.module';
+import { Escuela } from 'src/app/Module/escuela/escuela.module';
+import { Exposicion } from 'src/app/Module/exposicion/exposicion.module';
+import { Sede } from 'src/app/Module/sede/sede.module';
+import { TipoVisita } from 'src/app/Module/tipo-visita/tipo-visita.module';
 import { EscuelaService } from 'src/app/Services/escuela.service';
 import { SedeService } from 'src/app/Services/sede.service';
 import { TipoVisitaService } from 'src/app/Services/tipo-visita.service';
@@ -20,10 +20,10 @@ import { Alumnos, Participantes } from "../../Components/inicio/participantes";
 })
 export class InicioComponent implements OnInit {
   alumnos: Participantes[] = Alumnos;
-  Escuela: EscuelaModule[]= [];
-  Sede: SedeModule [] = [];
-  TipoVisita: TipoVisitaModule [] = [];
-  Exposiciones: ExposicionModule [] = []
+  Escuela: Escuela[]= [];
+  Sede: Sede [] = [];
+  TipoVisita: TipoVisita [] = [];
+  Exposiciones: Exposicion [] = []
   vistas = {
     I : "Inicio", 
     E : "Vista Escuela",
@@ -65,24 +65,24 @@ export class InicioComponent implements OnInit {
   }
   obtenerSede()
   {
-    this.mockServiceSede.getNombre().subscribe((res:SedeModule[]) => this.Sede = res);
+    this.mockServiceSede.getNombre().subscribe((res:Sede[]) => this.Sede = res);
     //this.sedeServices.get().subscribe((res: SedeModule[])=>this.Sede = res);
   }
   obtenerEscuela()
   {
-    this.mockServiceEscuela.getNombre().subscribe((res:EscuelaModule[]) => this.Escuela = res);
+    this.mockServiceEscuela.getNombre().subscribe((res:Escuela[]) => this.Escuela = res);
     //this.escuelaServices.getNombre().subscribe((res: EscuelaModule[])=>this.Escuela = res);
   }
   obtenerTipoVisita()
   {
-    this.mockServiceTipoVisita.getNombre().subscribe((res:TipoVisitaModule[]) => this.TipoVisita = res);
+    this.mockServiceTipoVisita.getNombre().subscribe((res:TipoVisita[]) => this.TipoVisita = res);
     //this.TipoVisitaService.get().subscribe((res: TipoVisitaModule[])=>this.TipoVisita = res);
   }
   obtenerExposicionesTemporalesDeSede()
   {
     console.log("aksdjha");
     
-    this.mockExposiciones.getNombre().subscribe((res:ExposicionModule[]) => {
+    this.mockExposiciones.getNombre().subscribe((res:Exposicion[]) => {
       this.Exposiciones = res;
       console.log(res);
       

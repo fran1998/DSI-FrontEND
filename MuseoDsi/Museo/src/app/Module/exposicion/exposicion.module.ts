@@ -1,64 +1,71 @@
-import { NgModule } from '@angular/core';
-import { CommonModule, Time } from '@angular/common';
+import { Time } from '@angular/common';
+import { Empleado } from '../empleado/Empleado';
+import { PublicoDestino } from '../publico-destino/publico-destino.module';
+import { TipoExposicion } from '../tipo-exposicion/tipo-exposicion.module';
 
-
-
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
-})
-
-export class ExposicionModule {
-  Nombre: string;
-  FechaFin: Date;
-  FechaFinReplanificada: Date;
-  FechaInicio: Date;
-  FechaInicioReplanificada: Date;
-  HoraApertura: Time;
-  HoraCierre: Time;
+export class Exposicion {
+  id: number;
+  nombre: string;
+  fechaFin: Date;
+  fechaFinReplanificada: Date;
+  fechaInicio: Date;
+  fechaInicioReplanificada: Date;
+  horaApertura: Time;
+  horaCierre: Time;
+  publicoDestino?: PublicoDestino[];
+  tipoExposicion?: TipoExposicion;
+  empleado?: Empleado;
  }
- export const Exposiciones: ExposicionModule [] =
+ export const exposiciones: Exposicion [] =
  [
-   {Nombre: "Arte Moderno",
-    FechaFin: new Date('2010-01-21'),
-    FechaInicio: new Date('2010-01-01'),
-    FechaFinReplanificada: new Date('2011-05-12'),
-    FechaInicioReplanificada: new Date('2010-11-27'),
-    HoraApertura: {hours: 8, minutes: 0},
-    HoraCierre: {hours: 16, minutes:0},
+   {
+    id: 1,
+    nombre: "Arte Moderno",
+    fechaFin: new Date('2010-01-21'),
+    fechaInicio: new Date('2010-01-01'),
+    fechaFinReplanificada: new Date('2011-05-12'),
+    fechaInicioReplanificada: new Date('2010-11-27'),
+    horaApertura: {hours: 8, minutes: 0},
+    horaCierre: {hours: 16, minutes:0},
   },
-  {Nombre: "Arte Natural",
-    FechaFin: new Date('2010-01-21'),
-    FechaInicio: new Date('2010-01-01'),
-    FechaFinReplanificada: new Date('2011-05-12'),
-    FechaInicioReplanificada: new Date('2010-11-27'),
-    HoraApertura: {hours: 8, minutes: 0},
-    HoraCierre: {hours: 16, minutes:0},
+  {
+    id: 2,
+    nombre: "Arte Natural",
+    fechaFin: new Date('2010-01-21'),
+    fechaInicio: new Date('2010-01-01'),
+    fechaFinReplanificada: new Date('2011-05-12'),
+    fechaInicioReplanificada: new Date('2010-11-27'),
+    horaApertura: {hours: 8, minutes: 0},
+    horaCierre: {hours: 16, minutes:0},
   },
-  {Nombre: "Arte Abstracto",
-    FechaFin: new Date('2010-01-21'),
-    FechaInicio: new Date('2010-01-01'),
-    FechaFinReplanificada: new Date('2011-05-12'),
-    FechaInicioReplanificada: new Date('2010-11-27'),
-    HoraApertura: {hours: 8, minutes: 0},
-    HoraCierre: {hours: 16, minutes:0},
+  {
+    id: 3,
+    nombre: "Arte Abstracto",
+    fechaFin: new Date('2010-01-21'),
+    fechaInicio: new Date('2010-01-01'),
+    fechaFinReplanificada: new Date('2011-05-12'),
+    fechaInicioReplanificada: new Date('2010-11-27'),
+    horaApertura: {hours: 8, minutes: 0},
+    horaCierre: {hours: 16, minutes:0},
   },
-  {Nombre: "Arte Literal",
-    FechaFin: new Date('2020-01-21'),
-    FechaInicio: new Date('2019-01-01'),
-    FechaFinReplanificada: new Date('2011-05-12'),
-    FechaInicioReplanificada: new Date('2010-11-27'),
-    HoraApertura: {hours: 8, minutes: 0},
-    HoraCierre: {hours: 16, minutes:0},
+  {
+    id: 4,
+    nombre: "Arte Literal",
+    fechaFin: new Date('2020-01-21'),
+    fechaInicio: new Date('2019-01-01'),
+    fechaFinReplanificada: new Date('2011-05-12'),
+    fechaInicioReplanificada: new Date('2010-11-27'),
+    horaApertura: {hours: 8, minutes: 0},
+    horaCierre: {hours: 16, minutes:0},
   },
-  {Nombre: "Arte Clasico",
-    FechaFin: new Date('2003-01-21'),
-    FechaInicio: new Date('2002-01-01'),
-    FechaFinReplanificada: new Date('2011-05-12'),
-    FechaInicioReplanificada: new Date('2010-10-27'),
-    HoraApertura: {hours: 6, minutes: 0},
-    HoraCierre: {hours: 11, minutes:0},
+  {
+    id: 5,
+    nombre: "Arte Clasico",
+    fechaFin: new Date('2003-01-21'),
+    fechaInicio: new Date('2002-01-01'),
+    fechaFinReplanificada: new Date('2011-05-12'),
+    fechaInicioReplanificada: new Date('2010-10-27'),
+    horaApertura: {hours: 6, minutes: 0},
+    horaCierre: {hours: 11, minutes:0},
   }
  ]

@@ -1,21 +1,17 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
-})
-export class EscuelaModule {
-  Nombre:string;
-  Id : number;
+export class Escuela {
+  nombre:string;
+  id : number;
+  domicilio: string;
+  mail: string;
+  telefCelular: number;
+  teleFijo: number
  }
- export const Escuelas:EscuelaModule []= 
+ export const escuelas:Escuela []= 
  [
-   {Id:1, Nombre:"Manuel Belgrano"},
-   {Id:2, Nombre:"Cordoba"},
-   {Id:3, Nombre:"San salvador"},
-   {Id:4, Nombre:"UTN"},
-   {Id:5, Nombre:"UCC"}
+   {id:1, nombre:"Manuel Belgrano", domicilio:'', mail:'', telefCelular: 0, teleFijo: 0},
+   {id:2, nombre:"Cordoba", domicilio:'', mail:'', telefCelular: 0, teleFijo: 0},
+   {id:3, nombre:"San salvador", domicilio:'', mail:'', telefCelular: 0, teleFijo: 0},
+   {id:4, nombre:"UTN", domicilio:'', mail:'', telefCelular: 0, teleFijo: 0},
+   {id:5, nombre:"UCC", domicilio:'', mail:'', telefCelular: 0, teleFijo: 0}
  ];

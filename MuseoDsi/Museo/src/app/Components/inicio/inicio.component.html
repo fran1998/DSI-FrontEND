@@ -47,15 +47,15 @@
 <div class="container mt-5">
     <!---validar formatos fechas y toda esa cuestion--> 
     <form name='formRegistrarReserva'[formGroup] = 'formRegistrarReserva' class="bg-light text-center" *ngIf="vista !== 'I'">
-    <h2 class="text-center">Registrar Reserva </h2>
+    <h2 class="text-center mt-5">Registrar Reserva </h2>
     <div class='form-group row text-center' *ngIf='vista === "E" ||vista === "A"'>
         <label class="col-form-label col-sm-1" for="Escuela">Escuela</label>
         <div class="col-sm-6">
             <select name="Escuela" [attr.disabled]='null' class="form-control" formControlName = "Escuela"
             [ngClass]="{'is-invalid': (formRegistrarReserva.controls.Escuela.touched || flagSiguiente) 
             && formRegistrarReserva.controls.Escuela.errors}">
-                <option class="text-center" *ngFor="let escuela of Escuela" [ngValue]='escuela.Id'>
-                     {{escuela.Nombre}}
+                <option class="text-center" *ngFor="let escuela of Escuela" [ngValue]='escuela.id'>
+                     {{escuela.nombre}}
             </select>
         </div>
         <div class='validacion' *ngIf="(formRegistrarReserva.controls.Escuela.touched || flagSiguiente) 
@@ -67,8 +67,8 @@
             <select name="Sede" [attr.disabled]='null' class="form-control" formControlName = "Sede"
             [ngClass]="{'is-invalid': (formRegistrarReserva.controls.Sede.touched || flagSiguiente) 
             && formRegistrarReserva.controls.Sede.errors}">>
-                <option class="text-center" *ngFor="let sede of Sede" [ngValue]='sede.Id'>
-                     {{sede.Nombre}}
+                <option class="text-center" *ngFor="let sede of Sede" [ngValue]='sede.id'>
+                     {{sede.nombre}}
             </select>
         </div>
         <div class='validacion' *ngIf="(formRegistrarReserva.controls.Sede.touched || flagSiguiente) 
@@ -90,8 +90,8 @@
             <select name='TipoVisita' [attr.disabled]='null' class="form-control" formControlName = "TipoVisita"
             [ngClass]="{'is-invalid': (formRegistrarReserva.controls.TipoVisita.touched || flagSiguiente) 
             && formRegistrarReserva.controls.TipoVisita.errors}">>
-                <option class="text-center" *ngFor="let tipoVisita of TipoVisita" [ngValue]='tipoVisita.Id'>
-                     {{tipoVisita.Nombre}}
+                <option class="text-center" *ngFor="let tipoVisita of TipoVisita" [ngValue]='tipoVisita.id'>
+                     {{tipoVisita.nombre}}
             </select>
             <div class='validacion' *ngIf="(formRegistrarReserva.controls.TipoVisita.touched || flagSiguiente) 
                        && (formRegistrarReserva.controls.TipoVisita.errors?.required)">*Dato requerido</div>
@@ -118,9 +118,9 @@
                     <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                   </div>
                 </th>
-                <td>{{exposicion.Nombre}}</td>
-                <td>{{exposicion.HoraApertura}}</td>
-                <td>{{exposicion.HoraCierre}}</td>
+                <td>{{exposicion.nombre}}</td>
+                <td>{{exposicion.horaApertura}}</td>
+                <td>{{exposicion.horaCierre}}</td>
               </tr>
             </tbody>
         </table>
