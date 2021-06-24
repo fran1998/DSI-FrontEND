@@ -23,7 +23,8 @@ export class InicioComponent implements OnInit {
   Escuela: Escuela[]= [];
   Sede: Sede [] = [];
   TipoVisita: TipoVisita [] = [];
-  Exposiciones: Exposicion [] = []
+  Exposiciones: Exposicion [] = [];
+  exposicionesElegidas: Exposicion[] = [];
   vistas = {
     I : "Inicio", 
     E : "Vista Escuela",
@@ -134,7 +135,7 @@ export class InicioComponent implements OnInit {
         }
         return;
       case 'X':
-        //if(!this.formRegistrarReserva.controls.Exposiciones.errors?.required)
+        if(this.exposicionesElegidas.length)
         {
         this.vista = 'R';
         break;
@@ -163,5 +164,25 @@ export class InicioComponent implements OnInit {
           return;
     }
     this.flagSiguiente = false;
+  };
+
+
+  agregarExposicion(exposicion: Exposicion){
+
+    if (this.exposicionesElegidas.includes(exposicion)) {
+      
+      let indice = this.exposicionesElegidas.indexOf(exposicion);
+      this.exposicionesElegidas.splice(indice, 1);
+      console.log(this.exposicionesElegidas);
+      
+      
+    }else{
+      
+      this.exposicionesElegidas.push(exposicion)
+      console.log(this.exposicionesElegidas);
+      
+    }
+
+
   }
 }

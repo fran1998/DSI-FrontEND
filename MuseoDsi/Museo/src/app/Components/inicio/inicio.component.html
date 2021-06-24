@@ -99,8 +99,11 @@
     </div>
     
     <!----falta terminar de mostrar datos---->
-    <div class='form-group row text-center' *ngIf='vista === "X" ||vista === "A"'>
-        <label class="col-form-label col-sm-1" for="Exposicion">Exposicion</label>
+    <div class='row' *ngIf='vista === "X" ||vista === "A"'>
+        <div class="col">
+            <h5 class="col-form-label col-sm-1" for="Exposicion">Exposiciones </h5>
+            <small class="text-warning">*Seleccione al menos una exposición</small>
+        </div>
 
         <table class="table">
             <thead class="thead-dark">
@@ -115,14 +118,15 @@
               <tr *ngFor="let exposicion of Exposiciones">
                 <th>
                     <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                  </div>
+                        <input class="form-check-input" type="checkbox" [value]="exposicion" id="defaultCheck1" #checks (click)="agregarExposicion(exposicion)">
+                    </div>
                 </th>
                 <td>{{exposicion.nombre}}</td>
                 <td>{{exposicion.horaApertura}}</td>
                 <td>{{exposicion.horaCierre}}</td>
               </tr>
             </tbody>
+
         </table>
 
 <!--         <div class="col-sm-4">
